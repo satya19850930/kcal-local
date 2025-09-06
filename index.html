@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KCal Local</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; margin:16px; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; }
+    input, select, button { font-size:16px; padding:8px; }
+    .row { display:flex; gap:8px; flex-wrap:wrap; margin:8px 0; }
+    .card { border:1px solid #ddd; border-radius:10px; padding:12px; margin:8px 0; }
+    .muted { color:#666; font-size:13px; }
+    .right { margin-left:auto; }
+    .goal { font-weight:600; }
+    .ok { color:green; }
+    .warn { color:#c66; }
+    .table { width:100%; border-collapse: collapse; }
+    .table td, .table th { border-bottom: 1px solid #eee; padding:6px; text-align:left; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>KCal Local</h1>
+    <div class="row">
+      <input id="goal" type="number" inputmode="numeric" placeholder="Napi cél (kcal)">
+      <button id="saveGoal">Cél mentése</button>
+      <button id="exportBtn">Export</button>
+      <label class="button"><input id="importFile" type="file" accept="application/json" style="display:none">Import</label>
+      <button id="addFoodBtn">Új étel</button>
+    </div>
+  </header>
+
+  <section class="card">
+    <div class="row">
+      <select id="foodSelect"></select>
+      <input id="grams" type="number" inputmode="numeric" placeholder="Gramm">
+      <button id="addIntake">Hozzáadás</button>
+    </div>
+    <div class="muted" id="calcPreview">Írj be grammot…</div>
+  </section>
+
+  <section class="card">
+    <div class="row">
+      <input id="datePicker" type="date">
+      <button id="todayBtn">Ma</button>
+      <button id="delAllToday" class="right">Napi tételek törlése</button>
+    </div>
+    <div id="summary"></div>
+    <table class="table" id="entriesTable"></table>
+  </section>
+
+  <section class="card">
+    <h3>Ételek (kcal / 100 g)</h3>
+    <table class="table" id="foodsTable"></table>
+  </section>
+
+  <!-- Dexie (IndexedDB wrapper) CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.7/dist/dexie.min.js"></script>
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js');
+    }
+  </script>
+</body>
+</html>
