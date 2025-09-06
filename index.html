@@ -61,8 +61,8 @@
 
   <!-- Dexie (IndexedDB wrapper) CDN -->
   <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.7/dist/dexie.min.js"></script>
-  <script src="db.js"></script>
-  <script src="app.js"></script>
+  <!-- IMPORTANT: module so that imports work -->
+  <script type="module" src="app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./service-worker.js');
