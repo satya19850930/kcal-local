@@ -6,7 +6,7 @@
   <title>KCal Local</title>
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="mobile-web-app-capable" content="yes">
   <link rel="apple-touch-icon" href="icon-192.png">
   <style>
     body { font-family: -apple-system, system-ui, sans-serif; margin:16px; }
@@ -61,8 +61,8 @@
 
   <!-- Dexie (IndexedDB wrapper) CDN -->
   <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.7/dist/dexie.min.js"></script>
-  <script src="db.js"></script>
-  <script src="app.js"></script>
+  <!-- FONTOS: modul-ként töltsd! -->
+  <script type="module" src="app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./service-worker.js');
