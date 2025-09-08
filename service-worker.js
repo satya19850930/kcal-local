@@ -1,4 +1,4 @@
-const CACHE = 'kcal-local-v4';
+const CACHE = 'kcal-local-v5';
 const ASSETS = [
   './', './index.html', './app.js', './db.js', './foods.json',
   './manifest.webmanifest',
